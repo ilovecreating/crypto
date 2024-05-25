@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "#imports": [".nuxt/imports.d.ts"]
+    },
+
+    "resolveJsonModule": true,
+    "noImplicitAny": false
+  },
+  "exclude": ["node_modules"],
+  "extends": "./.nuxt/tsconfig.json"
+}
