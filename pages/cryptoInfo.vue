@@ -8,8 +8,8 @@ const { data: countUsd } = await useFetch(
 );
 
 const oneDollar = 91.63;
-const ethR = countUsd.value['ethereum'].usd;
-const bitR = countEth.value['bitcoin'].eth;
+const ethR = await countUsd.value['ethereum'].usd;
+const bitR = await countEth.value['bitcoin'].eth;
 
 const massInfo = [
   { text: 'Курс $ к рублю', money: oneDollar },
