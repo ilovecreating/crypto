@@ -1,0 +1,3 @@
+interface objEx {
+  title: string;
+}

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from '#imports';
 
-const { data: countEth } = await useFetch(
+const { data: countEth } = await useFetch<any>(
   'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eth',
 );
 
-const { data: countUsd } = await useFetch(
+const { data: countUsd } = await useFetch<any>(
   'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd',
 );
 
@@ -32,13 +32,8 @@ function convertToBit(): void {
 const oneDollar: number = 91.63; // Установите курс доллара к рублю
 
 // Вызываем функцию конвертации
-
-//console.log(info.value['bitcoin'].usd);
-
-const exchangeUsd = ref<string[]>('From rub to usd');
-const exchangeEth = ref<string[]>('From usd to eth');
-const exchangeBit = ref<string[]>('From eth to bit');
 const selectedCoin = ref<string>('usd');
+//console.log(info.value['bitcoin'].usd);
 </script>
 
 <template>
@@ -46,14 +41,7 @@ const selectedCoin = ref<string>('usd');
     <div class="info">
       <NuxtLink to="/cryptoInfo">Курсы валют</NuxtLink>
     </div>
-    <select class="crypto" v-model="selectedCoin">
-      <option value="usd">
-        <div>{{ exchangeUsd }}</div>
-      </option>
-
-      <option value="eth">{{ exchangeEth }}</option>
-      <option value="bit">{{ exchangeBit }}</option>
-    </select>
+    <wallet :selected="selectedCoin" />
     <div v-if="selectedCoin === 'usd'">
       <input type="number" v-model="rubAmount" /> RUB
       <button @click="convertToUSD(oneDollar)">Convert to USD</button>

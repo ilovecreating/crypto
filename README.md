@@ -8,6 +8,8 @@ Make sure to install the dependencies:
 
 test
 
+devmode: npx nuxi dev
+
 npm run test
 
 ```bash
