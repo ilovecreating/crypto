@@ -31,8 +31,16 @@ function convertToBit(): void {
 
 const oneDollar: number = 91.63; // Установите курс доллара к рублю
 
-// Вызываем функцию конвертации
 const selectedCoin = ref<string>('usd');
+
+import type objEx from 'interfaces/typeinter';
+
+const objExchange = ref<objEx>({
+  titleUsd: 'From rub to usd',
+  titleEth: 'From usd to eth',
+  titleBit: 'From eth to bit',
+});
+
 //console.log(info.value['bitcoin'].usd);
 </script>
 
@@ -41,7 +49,17 @@ const selectedCoin = ref<string>('usd');
     <div class="info">
       <NuxtLink to="/cryptoInfo">Курсы валют</NuxtLink>
     </div>
-    <wallet :selected="selectedCoin" />
+    <select class="crypto" v-model="selectedCoin">
+      <option value="usd">
+        <div>{{ objExchange.titleUsd }}</div>
+      </option>
+      <option value="eth">
+        <div>{{ objExchange.titleEth }}</div>
+      </option>
+      <option value="bit">
+        <div>{{ objExchange.titleBit }}</div>
+      </option>
+    </select>
     <div v-if="selectedCoin === 'usd'">
       <input type="number" v-model="rubAmount" /> RUB
       <button @click="convertToUSD(oneDollar)">Convert to USD</button>

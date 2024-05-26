@@ -10,13 +10,17 @@ const { data: countUsd } = await useFetch(
 const oneDollar = 91.63;
 const ethR = countUsd.value['ethereum'].usd;
 const bitR = countEth.value['bitcoin'].eth;
+
+const massInfo = [
+  { text: 'Курс $ к рублю', money: oneDollar },
+  { text: 'Курс ETH к $', money: ethR },
+  { text: 'Курс BIT к ETH', money: bitR },
+];
 </script>
 
 <template>
-  <div class="text-wallet">
-    <p class="text">Курс $ к рублю {{ oneDollar }}</p>
-    <p class="text">Курс ETH к $ {{ ethR }}</p>
-    <p class="text">Курс BIT к ETH {{ bitR }}</p>
+  <div v-for="(item, index) in massInfo" :key="index" class="text-wallet">
+    <p class="text">{{ item.text }} {{ item.money }}</p>
   </div>
   <p><NuxtLink class="link" to="/">Вернуться на главную</NuxtLink></p>
 </template>
